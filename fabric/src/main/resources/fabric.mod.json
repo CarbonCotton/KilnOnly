@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "user.carboncotton.mc.kiln_only.fabric.ExampleModFabric"
+      "user.carboncotton.mc.kiln_only.fabric.KilnOnlyFabric"
     ],
     "client": [
-      "user.carboncotton.mc.kiln_only.fabric.client.ExampleModFabricClient"
+      "user.carboncotton.mc.kiln_only.fabric.client.KilnOnlyFabricClient"
     ]
   },
   "mixins": [
