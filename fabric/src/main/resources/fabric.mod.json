@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_only",
+  "version": "${version}",
+  "name": "Kiln Only",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/kiln_only/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "user.carboncotton.mc.kiln_only.fabric.ExampleModFabric"
+    ],
+    "client": [
+      "user.carboncotton.mc.kiln_only.fabric.client.ExampleModFabricClient"
+    ]
+  },
+  "mixins": [
+    "kiln_only.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.3",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
