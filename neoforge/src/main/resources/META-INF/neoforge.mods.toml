@@ -7,9 +7,9 @@ license = "Insert License Here"
 modId = "kiln_only"
 version = "${version}"
 displayName = "Kiln Only"
-authors = "Me!"
+authors = "CarbonCotton"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Adds only one thing - Kiln furnace.
 '''
 #logoFile = ""
 

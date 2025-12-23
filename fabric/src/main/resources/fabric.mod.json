@@ -3,13 +3,12 @@
   "id": "kiln_only",
   "version": "${version}",
   "name": "Kiln Only",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Adds only one thing - Kiln furnace.",
   "authors": [
-    "Me!"
+    "CarbonCotton"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/CarbonCotton/KilnOnly"
   },
   "license": "CC0-1.0",
   "icon": "assets/kiln_only/icon.png",
