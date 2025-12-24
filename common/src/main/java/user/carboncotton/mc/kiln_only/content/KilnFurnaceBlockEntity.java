@@ -12,7 +12,7 @@ import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
 public class KilnFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
-    protected KilnFurnaceBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public KilnFurnaceBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(AllObjects.KILN_FURNACE_BLOCK_ENTITY.get(), blockPos, blockState, AllObjects.FIRING_RECIPE_TYPE.get());
     }
 

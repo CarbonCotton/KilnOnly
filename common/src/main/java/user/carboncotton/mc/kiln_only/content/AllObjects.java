@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
+import java.util.function.Supplier;
+
 public class AllObjects {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
@@ -55,6 +57,24 @@ public class AllObjects {
     public static RegistrySupplier<RecipeSerializer<FiringRecipe>> FIRING_RECIPE_SERIALIZER;
 
 
+    public static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(String name, Supplier<T> blockEntity){
+        return BLOCK_ENTITIES.register(name, blockEntity
+        );
+    };
+
+
+    public static <T extends BlockEntityType<?>> void registerKilnFurnaceBlockEntity(Supplier<T> blockEntity) {
+        BLOCK_ENTITIES.register("kiln", blockEntity);
+    }
+
+    public static Block getRawKilnFurnaceBlock() {
+        return KILN_FURNACE_BLOCK.get();
+    }
+
+    public static void writeRegister() {
+        BLOCK_ENTITIES.register();
+    }
+
     public static void init(String modId) {
         final String kilnId = "kiln";
 
@@ -78,6 +98,11 @@ public class AllObjects {
            () -> new SimpleCookingSerializer<FiringRecipe>(FiringRecipe::new, 100)
         );
 
+
+        BLOCKS.register();
+        ITEMS.register();
+        RECIPE_TYPES.register();
+        RECIPE_SERIALIZERS.register();
     }
 
 

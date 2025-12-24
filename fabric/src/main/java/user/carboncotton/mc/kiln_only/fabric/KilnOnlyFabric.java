@@ -2,7 +2,11 @@ package user.carboncotton.mc.kiln_only.fabric;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
+import user.carboncotton.mc.kiln_only.content.AllObjects;
+import user.carboncotton.mc.kiln_only.content.KilnFurnaceBlockEntity;
 
 public final class KilnOnlyFabric implements ModInitializer {
     @Override
@@ -15,12 +19,12 @@ public final class KilnOnlyFabric implements ModInitializer {
         KilnOnlyMod.init();
 
 
-        /*
-        KilnOnlyMod.KILN_FURNACE_BLOCK_ENTITY = KilnOnlyMod.BLOCK_ENTITIES.register(
-            KilnOnlyMod.MOD_ID,
-            () -> BlockEntityType.Builder.of(KilnFurnaceBlockEntity::new, null).build()
+        AllObjects.registerKilnFurnaceBlockEntity(
+            () -> BlockEntityType.Builder
+                .of(KilnFurnaceBlockEntity::new, AllObjects.KILN_FURNACE_BLOCK.get())
+                .build()
         );
-        */
 
+        AllObjects.writeRegister();
     }
 }
