@@ -15,6 +15,8 @@ public final class KilnOnlyNeoForge {
         KilnOnlyMod.init();
 
 
+
+
         AllObjects.registerKilnFurnaceBlockEntity(
                 () -> BlockEntityType.Builder.of(
                     KilnFurnaceBlockEntity::new,

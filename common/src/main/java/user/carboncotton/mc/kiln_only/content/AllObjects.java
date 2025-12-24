@@ -12,10 +12,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class AllObjects {
@@ -58,13 +60,12 @@ public class AllObjects {
 
 
     public static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(String name, Supplier<T> blockEntity){
-        return BLOCK_ENTITIES.register(name, blockEntity
-        );
+        return BLOCK_ENTITIES.register(name, blockEntity);
     };
 
 
-    public static <T extends BlockEntityType<?>> void registerKilnFurnaceBlockEntity(Supplier<T> blockEntity) {
-        BLOCK_ENTITIES.register("kiln", blockEntity);
+    public static void registerKilnFurnaceBlockEntity(Supplier<BlockEntityType<KilnFurnaceBlockEntity>> blockEntity) {
+        KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", blockEntity);
     }
 
     public static Block getRawKilnFurnaceBlock() {
