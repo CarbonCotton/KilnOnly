@@ -1,24 +1,17 @@
-package user.carboncotton.mc.kiln_only;
+package user.carboncotton.mc.kiln_only.content;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.BlastFurnaceBlock;
-import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
 public class KilnFurnaceBlock extends AbstractFurnaceBlock {
 
@@ -39,7 +32,7 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createFurnaceTicker(level, blockEntityType, KilnOnlyMod.KILN_FURNACE_BLOCK_ENTITY.get());
+        return createFurnaceTicker(level, blockEntityType, AllObjects.KILN_FURNACE_BLOCK_ENTITY.get());
     }
 
 

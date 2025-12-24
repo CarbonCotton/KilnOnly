@@ -2,10 +2,6 @@ package user.carboncotton.mc.kiln_only.fabric;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import user.carboncotton.mc.kiln_only.KilnFurnaceBlockEntity;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
 public final class KilnOnlyFabric implements ModInitializer {
