@@ -1,11 +1,11 @@
 package user.carboncotton.mc.kiln_only.content;
 
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
@@ -50,7 +50,12 @@ public class AllObjects {
         Registries.BLOCK_ENTITY_TYPE
     );
 
+    private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(
+        KilnOnlyMod.MOD_ID,
+        Registries.CREATIVE_MODE_TAB
+    );
 
+    public static RegistrySupplier<CreativeModeTab> KILN_ONLY_TAB;
 
     public static RegistrySupplier<Block> KILN_FURNACE_BLOCK;
     public static RegistrySupplier<Item> KILN_FURNACE_BLOCKITEM;
@@ -81,6 +86,15 @@ public class AllObjects {
     public static void init(String modId) {
         final String kilnId = "kiln";
 
+
+        KILN_ONLY_TAB = TABS.register(
+        "kiln_only_tab",
+            () -> CreativeTabRegistry.create(
+                Component.translatable("kiln_only.itemGroup.main_tab"),
+                () -> new ItemStack(KILN_FURNACE_BLOCKITEM)
+            )
+        );
+
         KILN_FURNACE_BLOCK = BLOCKS.register(
             kilnId,
             () -> new KilnFurnaceBlock(
@@ -90,7 +104,7 @@ public class AllObjects {
 
         KILN_FURNACE_BLOCKITEM = ITEMS.register(
             kilnId,
-            () -> new BlockItem( KILN_FURNACE_BLOCK.get(), new Item.Properties() )
+            () -> new BlockItem( KILN_FURNACE_BLOCK.get(), new Item.Properties().arch$tab(KILN_ONLY_TAB) )
         );
 
         FIRING_RECIPE_TYPE = RECIPE_TYPES.register(
@@ -106,7 +120,7 @@ public class AllObjects {
            () -> new SimpleCookingSerializer<FiringRecipe>(FiringRecipe::new, 100)
         );
 
-
+        TABS.register();
         BLOCKS.register();
         ITEMS.register();
         RECIPE_TYPES.register();
