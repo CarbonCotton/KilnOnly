@@ -3,7 +3,9 @@ package user.carboncotton.mc.kiln_only.content;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
@@ -84,6 +86,11 @@ public class AllObjects {
             () -> new KilnFurnaceBlock(
                 BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)
             )
+        );
+
+        KILN_FURNACE_BLOCKITEM = ITEMS.register(
+            kilnId,
+            () -> new BlockItem( KILN_FURNACE_BLOCK.get(), new Item.Properties() )
         );
 
         FIRING_RECIPE_TYPE = RECIPE_TYPES.register(
