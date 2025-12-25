@@ -3,6 +3,7 @@ package user.carboncotton.mc.kiln_only.content;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 
 public class KilnFurnaceBlock extends AbstractFurnaceBlock {
 
@@ -39,9 +39,11 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
     protected void openContainer(Level level, BlockPos blockPos, Player player) {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity instanceof KilnFurnaceBlockEntity) {
-            // TODO: Add menu later
-        }
+            player.openMenu((MenuProvider)blockEntity);
 
+            //TODO: Create statistic
+            //player.awardStat(Stats.INTERACT_WITH_FURNACE);
+        }
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {

@@ -1,10 +1,16 @@
 package user.carboncotton.mc.kiln_only.content;
 
+import dev.architectury.event.events.client.ClientLifecycleEvent;
 import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.client.gui.screens.inventory.BlastFurnaceScreen;
+import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -18,6 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
+import user.carboncotton.mc.kiln_only.content.client.KilnFurnaceScreen;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -55,6 +62,13 @@ public class AllObjects {
         Registries.CREATIVE_MODE_TAB
     );
 
+    private static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(
+        KilnOnlyMod.MOD_ID,
+        Registries.MENU
+    );
+
+
+
     public static RegistrySupplier<CreativeModeTab> KILN_ONLY_TAB;
 
     public static RegistrySupplier<Block> KILN_FURNACE_BLOCK;
@@ -65,11 +79,12 @@ public class AllObjects {
     public static RegistrySupplier<RecipeType<FiringRecipe>> FIRING_RECIPE_TYPE;
     public static RegistrySupplier<RecipeSerializer<FiringRecipe>> FIRING_RECIPE_SERIALIZER;
 
+    public static RegistrySupplier<MenuType<KilnFurnaceMenu>> KILN_MENU_TYPE;
+
 
     public static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(String name, Supplier<T> blockEntity){
         return BLOCK_ENTITIES.register(name, blockEntity);
     };
-
 
     public static void registerKilnFurnaceBlockEntity(Supplier<BlockEntityType<KilnFurnaceBlockEntity>> blockEntity) {
         KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", blockEntity);
@@ -79,12 +94,17 @@ public class AllObjects {
         return KILN_FURNACE_BLOCK.get();
     }
 
+    public static MenuType<KilnFurnaceMenu> getRawKilnMenuType() {
+        return KILN_MENU_TYPE.get();
+    }
+
     public static void writeRegister() {
         BLOCK_ENTITIES.register();
     }
 
     public static void init(String modId) {
         final String kilnId = "kiln";
+
 
 
         KILN_ONLY_TAB = TABS.register(
@@ -120,11 +140,26 @@ public class AllObjects {
            () -> new SimpleCookingSerializer<FiringRecipe>(FiringRecipe::new, 100)
         );
 
+
+        KILN_MENU_TYPE = MENU_TYPES.register(
+        "kiln_menu",
+           () -> new MenuType<>(KilnFurnaceMenu::new, FeatureFlagSet.of())
+        );
+
+
         TABS.register();
         BLOCKS.register();
         ITEMS.register();
         RECIPE_TYPES.register();
         RECIPE_SERIALIZERS.register();
+        MENU_TYPES.register();
+
+        ClientLifecycleEvent.CLIENT_STARTED.register(client -> {
+            MenuRegistry.registerScreenFactory(
+                    AllObjects.KILN_MENU_TYPE.get(),
+                    KilnFurnaceScreen::new
+            );
+        });
     }
 
 
