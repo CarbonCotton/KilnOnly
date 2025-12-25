@@ -1,5 +1,6 @@
 {
   "block.kiln_only.kiln": "Kiln",
   "container.kiln_only.kiln_furnace": "Kiln",
-  "itemGroup.kiln_only.main_tab": "KilnOnly"
+  "itemGroup.kiln_only.main_tab": "KilnOnly",
+  "gui.kiln_only.recipebook.toggleRecipes.fireable": "Showing Fireable"
 }

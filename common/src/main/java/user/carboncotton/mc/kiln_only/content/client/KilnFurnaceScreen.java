@@ -15,7 +15,7 @@ public class KilnFurnaceScreen extends AbstractFurnaceScreen<KilnFurnaceMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.withDefaultNamespace("textures/gui/container/furnace.png");
 
     public KilnFurnaceScreen(KilnFurnaceMenu handler, Inventory playerInventory, Component title) {
-        super(handler, new SmeltingRecipeBookComponent(), playerInventory, title, TEXTURE, LIT_PROGRESS_SPRITE, BURN_PROGRESS_SPRITE);
+        super(handler, new FiringRecipeBookComponent(), playerInventory, title, TEXTURE, LIT_PROGRESS_SPRITE, BURN_PROGRESS_SPRITE);
     }
 
 }
