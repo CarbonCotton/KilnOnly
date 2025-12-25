@@ -1,10 +1,10 @@
 package user.carboncotton.mc.kiln_only;
 
+import net.minecraft.client.gui.screens.recipebook.BlastingRecipeBookComponent;
 import user.carboncotton.mc.kiln_only.content.AllObjects;
 
 public final class KilnOnlyMod {
     public static final String MOD_ID = "kiln_only";
-
 
 
     public static void init() {

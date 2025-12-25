@@ -20,7 +20,7 @@ public class KilnFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("kiln_only.container.kiln_furnace");
+        return Component.translatable("container.kiln_only.kiln_furnace");
     }
 
     @Override

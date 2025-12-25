@@ -110,7 +110,7 @@ public class AllObjects {
         KILN_ONLY_TAB = TABS.register(
         "kiln_only_tab",
             () -> CreativeTabRegistry.create(
-                Component.translatable("kiln_only.itemGroup.main_tab"),
+                Component.translatable("itemGroup.kiln_only.main_tab"),
                 () -> new ItemStack(KILN_FURNACE_BLOCKITEM.get())
             )
         );

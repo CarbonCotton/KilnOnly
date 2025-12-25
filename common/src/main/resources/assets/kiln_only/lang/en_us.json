@@ -1,4 +1,5 @@
 {
   "block.kiln_only.kiln": "Kiln",
-  "kiln_only.itemGroup.main_tab": "KilnOnly"
+  "container.kiln_only.kiln_furnace": "Kiln",
+  "itemGroup.kiln_only.main_tab": "KilnOnly"
 }
