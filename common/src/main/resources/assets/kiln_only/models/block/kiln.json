@@ -1,8 +1,28 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
-    "front": "minecraft:block/furnace_front",
-    "side": "minecraft:block/furnace_side",
-    "top": "minecraft:block/furnace_top"
-  }
+    "bottom": "kiln_only:block/kiln_bottom",
+    "top": "kiln_only:block/kiln_top",
+    "front": "kiln_only:block/kiln_front",
+    "back": "kiln_only:block/kiln_back",
+    "side": "kiln_only:block/kiln_side",
+    "particle": "#front"
+  },
+
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": { "texture": "#front" },
+        "south": { "texture": "#back" },
+        "west":  { "texture": "#side", "uv": [16,0,0,16] },
+        "east":  { "texture": "#side" },
+        "up":    { "texture": "#top" },
+        "down":  { "texture": "#bottom" }
+      }
+
+    }
+  ]
+
 }
