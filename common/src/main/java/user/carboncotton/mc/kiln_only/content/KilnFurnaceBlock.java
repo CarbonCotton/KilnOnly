@@ -2,11 +2,17 @@ package user.carboncotton.mc.kiln_only.content;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.BlastFurnaceBlock;
+import net.minecraft.world.level.block.FurnaceBlock;
+import net.minecraft.world.level.block.SmokerBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -46,9 +52,27 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
         }
     }
 
-    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource random) {
         if ((Boolean)blockState.getValue(LIT)) {
-            // TODO: Add animation later
+            // fetch coordinates
+            double x = blockPos.getX();
+            double y = blockPos.getY();
+            double z = blockPos.getZ();
+
+
+            // create specific cords for front and top particles
+            double topX = (x + 0.5) + (random.nextDouble() * 0.4 - 0.2);
+            double topY = (y + 1.1);
+            double topZ = (z + 0.5) + (random.nextDouble() * 0.4 - 0.2);
+
+            double frontX = (x + 0.5) + (random.nextDouble() * 0.4 - 0.2);
+            double frontY = (y + 0.2);
+            double frontZ = (z + 1.0);
+
+
+            // generate said particles
+            level.addParticle(ParticleTypes.FLAME, topX, topY, topZ, 0.0, 0.0, 0.0);
+            level.addParticle(ParticleTypes.FLAME, frontX, frontY, frontZ, 0.0, 0.0, 0.0);
         }
     }
 }
