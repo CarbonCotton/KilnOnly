@@ -1,0 +1,12 @@
+{
+  "block.kiln.fire": {
+    "sounds": [
+      "kiln_only:kiln_crackle1",
+      "kiln_only:kiln_crackle2",
+      "kiln_only:kiln_crackle3",
+      "kiln_only:kiln_crackle4",
+      "kiln_only:kiln_crackle5"
+    ],
+    "subtitle": "subtitles.kiln_only.block.kiln.fire"
+  }
+}

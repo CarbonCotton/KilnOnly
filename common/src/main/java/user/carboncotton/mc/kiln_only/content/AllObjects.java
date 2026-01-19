@@ -9,6 +9,8 @@ import net.minecraft.client.gui.screens.inventory.BlastFurnaceScreen;
 import net.minecraft.client.gui.screens.inventory.FurnaceScreen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
@@ -67,6 +69,11 @@ public class AllObjects {
         Registries.MENU
     );
 
+    private static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(
+        KilnOnlyMod.MOD_ID,
+        Registries.SOUND_EVENT
+    );
+
 
 
     public static RegistrySupplier<CreativeModeTab> KILN_ONLY_TAB;
@@ -80,6 +87,8 @@ public class AllObjects {
     public static RegistrySupplier<RecipeSerializer<FiringRecipe>> FIRING_RECIPE_SERIALIZER;
 
     public static RegistrySupplier<MenuType<KilnFurnaceMenu>> KILN_MENU_TYPE;
+
+    public static RegistrySupplier<SoundEvent> KILN_FIRING_SOUND;
 
 
     public static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(String name, Supplier<T> blockEntity){
@@ -146,6 +155,11 @@ public class AllObjects {
            () -> new MenuType<>(KilnFurnaceMenu::new, FeatureFlagSet.of())
         );
 
+        KILN_FIRING_SOUND = SOUNDS.register(
+        "block.kiln.fire",
+           () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(KilnOnlyMod.MOD_ID, "block.kiln.fire"))
+        );
+
 
         TABS.register();
         BLOCKS.register();
@@ -153,6 +167,7 @@ public class AllObjects {
         RECIPE_TYPES.register();
         RECIPE_SERIALIZERS.register();
         MENU_TYPES.register();
+        SOUNDS.register();
 
         ClientLifecycleEvent.CLIENT_STARTED.register(client -> {
             MenuRegistry.registerScreenFactory(

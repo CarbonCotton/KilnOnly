@@ -59,6 +59,11 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
             double y = blockPos.getY();
             double z = blockPos.getZ();
 
+            // play sound
+            if (random.nextDouble() < 0.1) {
+                level.playLocalSound(x, y, z, AllObjects.KILN_FIRING_SOUND.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+
 
             // create specific cords for front and top particles
             double topX = (x + 0.5) + (random.nextDouble() * 0.4 - 0.2);
