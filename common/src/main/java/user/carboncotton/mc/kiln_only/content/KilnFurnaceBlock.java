@@ -66,18 +66,21 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
 
 
             // create specific cords for front and top particles
-            double topX = (x + 0.5) + (random.nextDouble() * 0.4 - 0.2);
+            double topX = (x + 0.5) + (random.nextDouble() * 0.25 - 0.125);
             double topY = (y + 1.1);
-            double topZ = (z + 0.5) + (random.nextDouble() * 0.4 - 0.2);
+            double topZ = (z + 0.5) + (random.nextDouble() * 0.25 - 0.125);
 
             double frontX = (x + 0.5) + (random.nextDouble() * 0.4 - 0.2);
             double frontY = (y + 0.2);
-            double frontZ = (z + 1.0);
+            double frontZ = (z + 0.0);
 
 
             // generate said particles
-            level.addParticle(ParticleTypes.FLAME, topX, topY, topZ, 0.0, 0.0, 0.0);
+
             level.addParticle(ParticleTypes.FLAME, frontX, frontY, frontZ, 0.0, 0.0, 0.0);
+            if (random.nextDouble() < 0.5) {
+                level.addParticle(ParticleTypes.FLAME, topX, topY, topZ, 0.0, 0.0, 0.0);
+            }
         }
     }
 }
