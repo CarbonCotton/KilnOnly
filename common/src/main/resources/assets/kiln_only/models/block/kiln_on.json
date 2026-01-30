@@ -2,7 +2,7 @@
   "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
     "bottom": "kiln_only:block/kiln_bottom",
-    "top": "kiln_only:block/kiln_top",
+    "top": "kiln_only:block/kiln_top_on",
     "front": "kiln_only:block/kiln_front_on",
     "back": "kiln_only:block/kiln_back",
     "side": "kiln_only:block/kiln_side",
