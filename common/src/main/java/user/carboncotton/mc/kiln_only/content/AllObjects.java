@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import user.carboncotton.mc.kiln_only.KilnOnlyMod;
 import user.carboncotton.mc.kiln_only.content.client.KilnFurnaceScreen;
+import user.carboncotton.mc.kiln_only.utils.BlockEntityTypeFactory;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -91,25 +92,25 @@ public class AllObjects {
     public static RegistrySupplier<SoundEvent> KILN_FIRING_SOUND;
 
 
-    public static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(String name, Supplier<T> blockEntity){
-        return BLOCK_ENTITIES.register(name, blockEntity);
-    };
 
-    public static void registerKilnFurnaceBlockEntity(Supplier<BlockEntityType<KilnFurnaceBlockEntity>> blockEntity) {
-        KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", blockEntity);
+    public static void registerAllBlockEntities(BlockEntityTypeFactory factory) {
+
+        KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", () -> {
+            return factory.create(
+                KilnFurnaceBlockEntity::new,
+                BlockEntityTypeFactory.resolveBlocks(KILN_FURNACE_BLOCK)
+            );
+        });
+
+        BLOCK_ENTITIES.register();
     }
 
-    public static Block getRawKilnFurnaceBlock() {
-        return KILN_FURNACE_BLOCK.get();
-    }
+
 
     public static MenuType<KilnFurnaceMenu> getRawKilnMenuType() {
         return KILN_MENU_TYPE.get();
     }
 
-    public static void writeRegister() {
-        BLOCK_ENTITIES.register();
-    }
 
     public static void init() {
         final String kilnId = "kiln";
