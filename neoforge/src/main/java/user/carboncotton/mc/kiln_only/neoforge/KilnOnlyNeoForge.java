@@ -18,14 +18,8 @@ public final class KilnOnlyNeoForge {
         KilnOnlyMod.init();
 
 
-        BlockEntityTypeFactory forgeFactory = new BlockEntityTypeFactory() {
-            @Override
-            public <T extends BlockEntity> BlockEntityType<T> create(
-                    BlockEntityType.BlockEntitySupplier<T> blockEntityConstructor,
-                    Block[] entityBlocks
-            ) {
-                return BlockEntityType.Builder.of(blockEntityConstructor, entityBlocks).build(null);
-            }
+        BlockEntityTypeFactory forgeFactory = (constructor, blocks) -> {
+            return BlockEntityType.Builder.of(constructor, blocks).build(null);
         };
 
         AllObjects.registerAllBlockEntities(forgeFactory);

@@ -104,12 +104,11 @@ public class AllObjects {
 
     public static void registerAllBlockEntities(BlockEntityTypeFactory factory) {
 
-        KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", () -> {
-            return factory.create(
-                KilnFurnaceBlockEntity::new,
-                BlockEntityTypeFactory.resolveBlocks(KILN_FURNACE_BLOCK)
-            );
-        });
+        KILN_FURNACE_BLOCK_ENTITY = BLOCK_ENTITIES.register("kiln", () -> BlockEntityTypeFactory.safeCreate(
+            factory,
+            KilnFurnaceBlockEntity::new,
+            BlockEntityTypeFactory.resolveBlocks(KILN_FURNACE_BLOCK)
+        ));
 
         BLOCK_ENTITIES.register();
     }

@@ -10,9 +10,10 @@ import java.util.function.Supplier;
 @FunctionalInterface
 public interface BlockEntityTypeFactory {
 
-    <T extends BlockEntity> BlockEntityType<T> create(
-        BlockEntityType.BlockEntitySupplier<T> blockEntityConstructor,
-        Block[] entityBlocks
+
+    BlockEntityType<? extends BlockEntity> create(
+            BlockEntityType.BlockEntitySupplier<? extends BlockEntity> constructor,
+            Block[] blocks
     );
 
 
@@ -24,28 +25,14 @@ public interface BlockEntityTypeFactory {
             .toArray(Block[]::new);
     }
 
+
+    @SuppressWarnings("unchecked")
+    static <T extends BlockEntity> BlockEntityType<T> safeCreate(
+        BlockEntityTypeFactory factory,
+        BlockEntityType.BlockEntitySupplier<T> constructor,
+        Block[] blocks
+    ){
+        return (BlockEntityType<T>) factory.create(constructor, blocks);
+    }
+
 }
-
-
-/*
-BlockEntityTypeFactory fabricFactory = new BlockEntityTypeFactory() {
-    @Override
-    public <T extends BlockEntity> BlockEntityType<T> create(
-            BlockEntityType.BlockEntitySupplier<T> blockEntityConstructor,
-            Block[] entityBlocks
-    ) {
-        return BlockEntityType.Builder.of(blockEntityConstructor, entityBlocks).build(null);
-    }
-};
-
-
-BlockEntityTypeFactory forgeFactory = new BlockEntityTypeFactory() {
-    @Override
-    public <T extends BlockEntity> BlockEntityType<T> create(
-            BlockEntityType.BlockEntitySupplier<T> blockEntityConstructor,
-            Block[] entityBlocks
-    ) {
-        return BlockEntityType.Builder.of(blockEntityConstructor, entityBlocks).build(null);
-    }
-};
-*/

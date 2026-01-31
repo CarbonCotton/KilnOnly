@@ -22,14 +22,9 @@ public final class KilnOnlyFabric implements ModInitializer {
         KilnOnlyMod.init();
 
 
-        BlockEntityTypeFactory fabricFactory = new BlockEntityTypeFactory() {
-            @Override
-            public <T extends BlockEntity> BlockEntityType<T> create(
-                    BlockEntityType.BlockEntitySupplier<T> blockEntityConstructor,
-                    Block[] entityBlocks
-            ) {
-                return BlockEntityType.Builder.of(blockEntityConstructor, entityBlocks).build(null);
-            }
+
+        BlockEntityTypeFactory fabricFactory = (constructor, blocks) -> {
+            return BlockEntityType.Builder.of(constructor, blocks).build(null);
         };
 
         AllObjects.registerAllBlockEntities(fabricFactory);
