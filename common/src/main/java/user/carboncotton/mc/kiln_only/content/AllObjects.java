@@ -111,7 +111,7 @@ public class AllObjects {
         BLOCK_ENTITIES.register();
     }
 
-    public static void init(String modId) {
+    public static void init() {
         final String kilnId = "kiln";
 
 

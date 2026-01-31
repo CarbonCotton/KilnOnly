@@ -8,6 +8,6 @@ public final class KilnOnlyMod {
 
 
     public static void init() {
-        AllObjects.init(MOD_ID);
+        AllObjects.init();
     }
 }
