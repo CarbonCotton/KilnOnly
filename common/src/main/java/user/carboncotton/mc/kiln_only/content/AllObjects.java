@@ -1,6 +1,7 @@
 package user.carboncotton.mc.kiln_only.content;
 
 import dev.architectury.event.events.client.ClientLifecycleEvent;
+import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -186,13 +187,16 @@ public class AllObjects {
         SOUNDS.register();
         STATISTICS.register();
 
-        Stats.CUSTOM.get(INTERACT_WITH_KILN.get(), StatFormatter.DEFAULT);
 
         ClientLifecycleEvent.CLIENT_STARTED.register(client -> {
             MenuRegistry.registerScreenFactory(
                     AllObjects.KILN_MENU_TYPE.get(),
                     KilnFurnaceScreen::new
             );
+        });
+
+        LifecycleEvent.SETUP.register(() -> {
+            Stats.CUSTOM.get(INTERACT_WITH_KILN.get(), StatFormatter.DEFAULT);
         });
     }
 
