@@ -11,6 +11,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.stats.StatFormatter;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
@@ -75,6 +77,11 @@ public class AllObjects {
         Registries.SOUND_EVENT
     );
 
+    private static final DeferredRegister<ResourceLocation> STATISTICS = DeferredRegister.create(
+        KilnOnlyMod.MOD_ID,
+        Registries.CUSTOM_STAT
+    );
+
 
 
     public static RegistrySupplier<CreativeModeTab> KILN_ONLY_TAB;
@@ -90,6 +97,8 @@ public class AllObjects {
     public static RegistrySupplier<MenuType<KilnFurnaceMenu>> KILN_MENU_TYPE;
 
     public static RegistrySupplier<SoundEvent> KILN_FIRING_SOUND;
+
+    public static RegistrySupplier<ResourceLocation> INTERACT_WITH_KILN;
 
 
 
@@ -161,6 +170,13 @@ public class AllObjects {
            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(KilnOnlyMod.MOD_ID, "block.kiln.fire"))
         );
 
+        INTERACT_WITH_KILN = STATISTICS.register(
+         "interact_with_kiln",
+            () -> ResourceLocation.fromNamespaceAndPath(KilnOnlyMod.MOD_ID, "interact_with_kiln")
+        );
+
+
+
 
         TABS.register();
         BLOCKS.register();
@@ -169,6 +185,9 @@ public class AllObjects {
         RECIPE_SERIALIZERS.register();
         MENU_TYPES.register();
         SOUNDS.register();
+        STATISTICS.register();
+
+        Stats.CUSTOM.get(INTERACT_WITH_KILN.get(), StatFormatter.DEFAULT);
 
         ClientLifecycleEvent.CLIENT_STARTED.register(client -> {
             MenuRegistry.registerScreenFactory(

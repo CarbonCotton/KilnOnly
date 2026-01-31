@@ -47,8 +47,8 @@ public class KilnFurnaceBlock extends AbstractFurnaceBlock {
         if (blockEntity instanceof KilnFurnaceBlockEntity) {
             player.openMenu((MenuProvider)blockEntity);
 
-            //TODO: Create statistic
-            //player.awardStat(Stats.INTERACT_WITH_FURNACE);
+
+            player.awardStat(AllObjects.INTERACT_WITH_KILN.get());
         }
     }
 
